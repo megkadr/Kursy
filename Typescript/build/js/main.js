@@ -1,53 +1,21 @@
 "use strict";
-let stringArr = ['one', 'hey', 'Artur'];
-let guitars = ['strat', 'Les Paul', 5150];
-let mixedData = ['EVH', 1084, true];
-let JP = {
-    name: 'Jan',
-    active: false,
-    albums: ['yes', 'no']
+// convert to more or less specific
+let a = 'hello';
+let b = a; // less specific
+let c = a; // more specific
+let d = 'word';
+let e = 'word'; // you cannot use this with React files 
+const addOrConcat = (a, b, c) => {
+    if (c === 'add')
+        return a + b;
+    return '' + a + b;
 };
-// Literal types
-let myName;
-let userName;
-userName = 'Amy';
-// functions
-const add = (a, b) => {
-    return a + b;
-};
-const logMsg = (message) => {
-    console.log(message);
-};
-logMsg('Hello !');
-logMsg(add(2, 3));
-let subtract = function (c, d) {
-    return c - d;
-};
-let multiply = function (c, d) {
-    return c * d;
-};
-logMsg(multiply(2, 2));
-// optional parameters
-const addAll = (a, b, c) => {
-    if (typeof c !== 'undefined') {
-        return a + b + c;
-    }
-    return a + b;
-};
-// default param value
-const sumAll = (a, b, c = 2) => {
-    return a + b + c;
-};
-logMsg(addAll(2, 3, 2));
-logMsg(addAll(2, 3));
-logMsg(sumAll(2, 3));
-// Rest Parameters
-const total = (...nums) => {
-    return nums.reduce((prev, curr) => prev + curr);
-};
-logMsg(total(1, 2, 3, 4));
-// custom type guard
-const isNumber = (value) => {
-    return typeof value === 'number'
-        ? true : false;
-};
+let myVal = addOrConcat(2, 3, 'concat');
+// be careful! TS sees no problem - but a string is returned
+let nextVal = addOrConcat(2, 3, 'concat');
+// The DOM
+const img = document.querySelector('#img');
+const myImg = document.querySelector('#img');
+const middleSpecificImg = document.getElementById('#img');
+// myImg.src
+// middleSpecificImg.src

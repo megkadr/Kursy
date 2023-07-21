@@ -1,88 +1,29 @@
-let stringArr = ['one','hey','Artur']
+type One = string
+type Two = string | number
+type Three = 'hello'
 
-let guitars =['strat', 'Les Paul', 5150]
+// convert to more or less specific
+let a: One = 'hello'
+let b = a as Two // less specific
+let c = a as Three // more specific
 
-let mixedData = ['EVH', 1084, true]
-//Aliases
-type stringOrNumber = string | number
+let d = <One>'word'
+let e = <string | number>'word' // you cannot use this with React files 
 
-type stringOrNumberArray = (string | number)[]
-
-interface Guitarist  {
-    name?: string,
-    active: boolean,
-    albums: stringOrNumberArray
+const addOrConcat =(a: number,b: number,c: 'add' | 'concat'): number | string =>{
+    if(c === 'add') return a + b
+    return '' + a + b
 }
 
-let JP: Guitarist = {
-    name: 'Jan',
-    active: false,
-    albums: ['yes','no']
-}
+let myVal: string = addOrConcat(2,3,'concat') as string
 
-type UserId = stringOrNumber
+// be careful! TS sees no problem - but a string is returned
+let nextVal: number = addOrConcat(2,3,'concat') as number
 
-// Literal types
+// The DOM
+const img = document.querySelector('#img')
+const myImg = document.querySelector('#img') as HTMLImageElement
+const middleSpecificImg = document.getElementById('#img') as HTMLImageElement
 
-let myName: 'Artur'
-
-let userName: 'Dave' | 'Artur' | 'Amy'
-userName = 'Amy'
-
-// functions
-
-const add = (a: number,b: number): number => {
-    return a + b
-}
-
-const logMsg = (message: any): void =>{
-    console.log(message)
-}
-
-logMsg('Hello !')
-logMsg(add(2,3))
-
-let subtract = function(c: number, d: number):
-number{
-    return c - d
-}
-
-type mathFunction =(a: number, b: number) => number
-
-let multiply: mathFunction =  function(c,d){
-    return c * d
-}
-
-logMsg(multiply(2,2))
-
-// optional parameters
-const addAll = (a:number, b: number, c?: number):
-number => {
-    if(typeof c !== 'undefined'){
-        return a + b + c
-    } 
-    return a + b   
-}
-
-// default param value
-const sumAll = (a:number, b: number, c: number = 2):
-number => {
-    return a + b + c
-}
-
-logMsg(addAll(2,3,2))
-logMsg(addAll(2,3))
-logMsg(sumAll(2,3))
-
-// Rest Parameters
-const total = (...nums: number[]): number =>{
-    return nums.reduce((prev,curr) => prev + curr)
-}
-
-logMsg(total(1,2,3,4))
-
-// custom type guard
-const isNumber = (value: any): boolean => {
-    return typeof value === 'number'
-    ? true : false
-}
+// myImg.src
+// middleSpecificImg.src
