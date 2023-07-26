@@ -1,21 +1,32 @@
 "use strict";
-// convert to more or less specific
-let a = 'hello';
-let b = a; // less specific
-let c = a; // more specific
-let d = 'word';
-let e = 'word'; // you cannot use this with React files 
-const addOrConcat = (a, b, c) => {
-    if (c === 'add')
-        return a + b;
-    return '' + a + b;
-};
-let myVal = addOrConcat(2, 3, 'concat');
-// be careful! TS sees no problem - but a string is returned
-let nextVal = addOrConcat(2, 3, 'concat');
-// The DOM
-const img = document.querySelector('#img');
-const myImg = document.querySelector('#img');
-const middleSpecificImg = document.getElementById('#img');
-// myImg.src
-// middleSpecificImg.src
+class Coder {
+    constructor(name, music, age, lang = "Typescript") {
+        this.name = name;
+        this.music = music;
+        this.age = age;
+        this.lang = lang;
+        this.name = name;
+        this.music = music;
+        this.age = age;
+        this.lang = lang;
+    }
+    getAge() {
+        return `Hello, I' m ${this.age}`;
+    }
+}
+const Artur = new Coder('Artur', 'Rock', 23, 'Pl');
+console.log(Artur.getAge()); // ? mając metode w klasie na uzyskanie wieku, możemy dostać się do wartości używajac metody z klasy
+// console.log(Artur.age) //! wiek jest ustawiony jako private, nie można dostać się bezpośrednio
+class WebDev extends Coder {
+    constructor(computer, name, music, age) {
+        super(name, music, age);
+        this.computer = computer;
+        this.computer = computer;
+    }
+    getLang() {
+        return `I am write ${this.lang}`;
+    }
+}
+const Sara = new WebDev('mac', 'Sara', 'POP', 25);
+console.log(Sara.getLang());
+console.log(Sara.getAge());

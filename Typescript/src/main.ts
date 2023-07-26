@@ -1,29 +1,42 @@
-type One = string
-type Two = string | number
-type Three = 'hello'
+class Coder {
 
-// convert to more or less specific
-let a: One = 'hello'
-let b = a as Two // less specific
-let c = a as Three // more specific
+    constructor(
+        public  readonly name: string, 
+        public music: string,
+        private age: number,
+        protected lang: string  = "Typescript"){
+        this.name = name
+        this.music = music
+        this.age = age
+        this.lang = lang
+    }
 
-let d = <One>'word'
-let e = <string | number>'word' // you cannot use this with React files 
-
-const addOrConcat =(a: number,b: number,c: 'add' | 'concat'): number | string =>{
-    if(c === 'add') return a + b
-    return '' + a + b
+    public getAge(){
+        return `Hello, I' m ${this.age}`
+    }
 }
 
-let myVal: string = addOrConcat(2,3,'concat') as string
+const  Artur = new Coder('Artur','Rock', 23,'Pl')
+console.log(Artur.getAge()) // ? mając metode w klasie na uzyskanie wieku, możemy dostać się do wartości używajac metody z klasy
+// console.log(Artur.age) //! wiek jest ustawiony jako private, nie można dostać się bezpośrednio
 
-// be careful! TS sees no problem - but a string is returned
-let nextVal: number = addOrConcat(2,3,'concat') as number
+class WebDev extends Coder{
+    constructor(
+        public computer: string,
+        name: string,
+        music: string,
+        age: number,
+        ){
+        super(name,music,age)
+        this.computer = computer
+    }
 
-// The DOM
-const img = document.querySelector('#img')
-const myImg = document.querySelector('#img') as HTMLImageElement
-const middleSpecificImg = document.getElementById('#img') as HTMLImageElement
+    public getLang(){
+        return `I am write ${this.lang}`
+    }
+}
 
-// myImg.src
-// middleSpecificImg.src
+const Sara = new WebDev('mac','Sara','POP',25)
+
+console.log(Sara.getLang())
+console.log(Sara.getAge())
