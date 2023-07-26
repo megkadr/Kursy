@@ -1,42 +1,31 @@
-class Coder {
+// Index Signatures
 
-    constructor(
-        public  readonly name: string, 
-        public music: string,
-        private age: number,
-        protected lang: string  = "Typescript"){
-        this.name = name
-        this.music = music
-        this.age = age
-        this.lang = lang
-    }
-
-    public getAge(){
-        return `Hello, I' m ${this.age}`
-    }
+interface TransactionObj{
+    [index: string]: number,
+    Pizza: number,
+    Books: number,
+    Job: number
 }
 
-const  Artur = new Coder('Artur','Rock', 23,'Pl')
-console.log(Artur.getAge()) // ? mając metode w klasie na uzyskanie wieku, możemy dostać się do wartości używajac metody z klasy
-// console.log(Artur.age) //! wiek jest ustawiony jako private, nie można dostać się bezpośrednio
-
-class WebDev extends Coder{
-    constructor(
-        public computer: string,
-        name: string,
-        music: string,
-        age: number,
-        ){
-        super(name,music,age)
-        this.computer = computer
-    }
-
-    public getLang(){
-        return `I am write ${this.lang}`
-    }
+const todaysTransactions: TransactionObj = {
+    Pizza: -10,
+    Books: -5,
+    Job: 50
 }
 
-const Sara = new WebDev('mac','Sara','POP',25)
+console.log(todaysTransactions.Pizza)
+console.log(todaysTransactions['Pizza'])
 
-console.log(Sara.getLang())
-console.log(Sara.getAge())
+let prop: string = 'Pizza'
+console.log(todaysTransactions[prop])
+
+const todaysNet = (transcations: TransactionObj):
+number =>{
+    let total = 0
+    for(const transcation in transcations){
+        total += transcations[transcation]
+    }
+    return total
+}
+
+console.log(todaysNet(todaysTransactions))
