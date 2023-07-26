@@ -1,19 +1,19 @@
 "use strict";
-let stringArr = ['one', 'hey', 'Artur'];
-let guitars = ['strat', 'Les Paul', 5150];
-let mixedData = ['EVH', 1084, true];
-let myArr = [];
-const exampleObj = {
-    prop1: 'Dave',
-    ptop2: true,
+// Index Signatures
+const todaysTransactions = {
+    Pizza: -10,
+    Books: -5,
+    Job: 50
 };
-exampleObj.prop1 = 'Artur';
-let JP = {
-    name: 'Jan',
-    active: false,
-    albums: ['yes', 'no']
+console.log(todaysTransactions.Pizza);
+console.log(todaysTransactions['Pizza']);
+let prop = 'Pizza';
+console.log(todaysTransactions[prop]);
+const todaysNet = (transcations) => {
+    let total = 0;
+    for (const transcation in transcations) {
+        total += transcations[transcation];
+    }
+    return total;
 };
-const greetGuitarist = (guitarist) => {
-    return `Hello ${guitarist.name}!`;
-};
-console.log(greetGuitarist(JP));
+console.log(todaysNet(todaysTransactions));

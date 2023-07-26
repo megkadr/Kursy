@@ -1,33 +1,31 @@
-let stringArr = ['one','hey','Artur']
+// Index Signatures
 
-let guitars =['strat', 'Les Paul', 5150]
-
-let mixedData = ['EVH', 1084, true]
-
-let myArr: string[] = []
-
-
-const exampleObj = {
-    prop1: 'Dave',
-    ptop2: true,
+interface TransactionObj{
+    [index: string]: number,
+    Pizza: number,
+    Books: number,
+    Job: number
 }
 
-exampleObj.prop1 = 'Artur'
-
-interface Guitarist  {
-    name: string,
-    active?: boolean,
-    albums: (string | number)[]
+const todaysTransactions: TransactionObj = {
+    Pizza: -10,
+    Books: -5,
+    Job: 50
 }
 
-let JP: Guitarist = {
-    name: 'Jan',
-    active: false,
-    albums: ['yes','no']
+console.log(todaysTransactions.Pizza)
+console.log(todaysTransactions['Pizza'])
+
+let prop: string = 'Pizza'
+console.log(todaysTransactions[prop])
+
+const todaysNet = (transcations: TransactionObj):
+number =>{
+    let total = 0
+    for(const transcation in transcations){
+        total += transcations[transcation]
+    }
+    return total
 }
 
-const greetGuitarist = (guitarist: Guitarist) => {
-    return `Hello ${guitarist.name}!`
-}
-
-console.log(greetGuitarist(JP));
+console.log(todaysNet(todaysTransactions))
